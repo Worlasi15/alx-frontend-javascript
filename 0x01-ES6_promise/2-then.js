@@ -6,7 +6,7 @@ function handleResponseFromAPI(promise) {
     })
     .catch((error) => {
       console.error('Error:', error.message);
-      return new Error();
+      throw new Error();  // Throw an empty Error object for rejection
     });
 }
 
