@@ -8,8 +8,8 @@ const handleProfileSignup = async (firstName, lastName, fileName) => {
   try {
     const [userData, photoData] = await Promise.allSettled([userPromise, photoPromise]);
     return [
-      { status: userData.status, value: userData.value },
-      { status: photoData.status, value: photoData.value },
+      { function: 'signUpUser', status: userData.status, value: userData.status === 'fulfilled' ? userData.value : userData.reason },
+      { function: 'uploadPhoto', status: photoData.status, value: photoData.status === 'fulfilled' ? photoData.value : photoData.reason },
     ];
   } catch (error) {
     return [{ status: 'rejected', value: error }];
